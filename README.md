@@ -49,41 +49,41 @@ How To Use This Module
     img2=io.imread(imagepath)
     
     ldmer=ldm.LDM()
-    print img.shape[0]
+    print(img.shape[0])
     ldl,facel,txt=ldmer.landmarks(img)
-    print txt
+    print(txt)
     
     for ld in ldl:
-        print 10*'-'
-        print 'nose:'
-        print ld['nose']
+        print(10*'-')
+        print('nose:')
+        print(ld['nose'])
     for face in facel:
-        print 10*'-'
-        print 'face:'
-        print face.top()
-        print face.left()
-        print face.width()
-        print face.height()
-        print face.bottom()
-        print face.right()
+        print(10*'-') 
+        print('face:')
+        print(face.top())
+        print(face.left())
+        print(face.width())
+        print(face.height())
+        print(face.bottom())
+        print(face.right())
         x,y,w,h=[face.top(),face.left(),face.width(),face.height()]
-        print x,y,w,h
-    print "feature:"
+        print(x,y,w,h)
+    print("feature:")
     ffl=ldmer.face_feature(img,facel)
     for ff in ffl:
-        print help(ff)
-        print 'ff='+str(ff)
-        print 'len(ff)='+str(len(ff))
-        print 'ff[0]='+str(ff[0])
-        print 'ff[127]='+str(ff[127])
+        print(help(ff))
+        print('ff='+str(ff))
+        print('len(ff)='+str(len(ff)))
+        print('ff[0]='+str(ff[0]))
+        print('ff[127]='+str(ff[127]))
 
-    print "face compare:"
-    print ldmer.face_rec(img1,img2)
-    print ldmer.has_same_person(img1,img2)
-    print ldmer.has_same_person(img2,img2)
+    print("face compare:")
+    print(ldmer.face_rec(img1,img2))
+    print(ldmer.has_same_person(img1,img2))
+    print(ldmer.has_same_person(img2,img2))
 
-    print "face number:"
-    print ldmer.face_number(img,facel)
+    print("face number:")
+    print(ldmer.face_number(img,facel))
 
 
 

@@ -17,7 +17,7 @@ class LDM:
         self.face_rec_model_path='face_rec.dat'
         url="http://dlib.net/files/dlib_face_recognition_resnet_model_v1.dat.bz2"
         self.face_rec_model_path=self.get_model(url,self.face_rec_model_path)
-        print self.face_rec_model_path 
+        print(self.face_rec_model_path)
         self.facerec = dlib.face_recognition_model_v1(self.face_rec_model_path)
         self.CF = msd.init()
     def imread(self,imgpath):
@@ -74,7 +74,7 @@ class LDM:
         #predictor_path="landmarks_68.dat"
         #url='http://dlib.net/files/shape_predictor_68_face_landmarks.dat.bz2'
         if not os.path.exists(predictor_path):
-            print os.path.exists("%s.bz2"%(predictor_path))
+            print(os.path.exists("%s.bz2"%(predictor_path)))
             if not os.path.exists("%s.bz2"%(predictor_path)):
                 os.system('wget -O %s.bz2 %s'%(predictor_path,url))   
             os.system('bunzip2 %s.bz2'%(predictor_path))   
@@ -93,9 +93,9 @@ class LDM:
         #the rectangle area of face vs the area of img
         ratel=[]
         for face in facel:
-            rate=float(face.width())*float(face.height())
-            rate/=float(img.shape(0)) 
-            rate/=float(img.shape(1))
+            rate = float(face.width()) * float(face.height())
+            rate /= float(img.shape[0])
+            rate /= float(img.shape[1])
             ratel.append(rate) 
         return ratel
     def face_number(self,img,facel):
@@ -240,7 +240,7 @@ class LDM:
             img2=self.draw_rect(img2,face)
         img_a=np.hstack((img1,img2))
         cv2.putText(img_a,'similarity:%.2f'%(max_score),(10,30),cv2.FONT_HERSHEY_COMPLEX,1,(0,255,0),2)
-        print savename
+        print(savename)
 
         img_a=cv2.cvtColor(img_a, cv2.COLOR_BGR2RGB)
         cv2.imwrite(savename,img_a)
@@ -344,10 +344,10 @@ class LDM:
             if compare_num>max_compare_num or see_images1>max_see_images or see_images2>max_see_images:
                 break
             for imf2 in os.listdir(imagedir2):
-                print cc1,cc2,compare_num,see_images1,see_images2,imf1,imf2
+                print(cc1,cc2,compare_num,see_images1,see_images2,imf1,imf2)
                 img2=cv2.imread(os.path.join(imagedir2,imf2))
                 rd=self.face_rec(img1,img2,0.0)
-                print rd
+                print(rd)
                 if compare_num>max_compare_num or see_images1>max_see_images or see_images2>max_see_images:
                     break
                 if len(rd['face1l'])<1 or cc1>3 or cc2>3:
@@ -366,14 +366,14 @@ class LDM:
                 #cc2+=1
                 #compare_num+=1
                 for score in rd['scorel']:
-                       print "score:",score
-                       score_ave+=score
-                       compare_num+=1
-                       cc2+=1
-                       if score>score_threshold:
-                           sameper_num+=1
-                           break
-                print "%d/%d"%(sameper_num,compare_num)
+                    print("score:",score)
+                    score_ave+=score
+                    compare_num+=1
+                    cc2+=1
+                    if score>score_threshold:
+                        sameper_num+=1
+                        break
+                print("%d/%d"%(sameper_num,compare_num))
                 if compare_num>max_compare_num:
                     break
                     #print ldmer.has_same_person(img1,img2) 
@@ -402,10 +402,10 @@ class LDM:
             if compare_num>max_compare_num or see_images1>max_see_images or see_images2>max_see_images:
                 break
             for imf2 in os.listdir(imagedir2):
-                print cc1,cc2,compare_num,see_images1,see_images2,imf1,imf2
+                print(cc1,cc2,compare_num,see_images1,see_images2,imf1,imf2)
                 img2=cv2.imread(os.path.join(imagedir2,imf2))
                 rd=self.face_rec(img1,img2,0.0)
-                print rd
+                print(rd)
                 if compare_num>max_compare_num or see_images1>max_see_images or see_images2>max_see_images:
                     break
                 if len(rd['face1l'])<1 or cc1>3 or cc2>3:
@@ -424,14 +424,14 @@ class LDM:
                 #cc2+=1
                 #compare_num+=1
                 for score in rd['scorel']:
-                       print "score:",score
-                       score_ave+=score
-                       compare_num+=1
-                       cc2+=1
-                       if score>score_threshold:
-                           sameper_num+=1
-                           break
-                print "%d/%d"%(sameper_num,compare_num)
+                    print("score:",score)
+                    score_ave+=score
+                    compare_num+=1
+                    cc2+=1
+                    if score>score_threshold:
+                        sameper_num+=1
+                        break
+                print("%d/%d"%(sameper_num,compare_num))
                 if compare_num>max_compare_num:
                     break
                     #print ldmer.has_same_person(img1,img2) 
@@ -489,13 +489,13 @@ class LDM:
             if ic>0 and xy_arr[ic-1][3]<1 and sumxy>=1:
                 error_equl_pos.append([x,y,score,sumxy])
             ic+=1
-        print "the auc is %s."%auc
+        print("the auc is %s."%auc)
         x = [_v[0] for _v in xy_arr]
         y = [_v[1] for _v in xy_arr]
-        print 'roc data is :'
-        print xy_arr_key
-        print 'error_equl_pos:'
-        print error_equl_pos
+        print('roc data is :')
+        print(xy_arr_key)
+        print('error_equl_pos:')
+        print(error_equl_pos)
         return xy_arr,xy_arr_key,error_equl_pos,auc
         #title="ROC curve of %s (AUC = %.4f)" % ('race_classier' , auc)
         #draw_curve(x,y,800,600,title,"False Positive Rate(FA)","True Positive Rate(RECALL)")
