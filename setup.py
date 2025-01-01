@@ -16,5 +16,12 @@ setup(
     author_email="vdidon@live.fr",
     url="https://github.com/vdidon/ldm3",
     py_modules=['ldm'],
-    platforms = 'any'
+    platforms = 'any',
+    install_requires=[
+        'dlib',
+        'scikit-image',
+        'numpy',
+        'opencv-python'
+    ],
+    python_requires='>=3'
 )
