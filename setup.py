@@ -21,7 +21,8 @@ setup(
         'dlib',
         'scikit-image',
         'numpy',
-        'opencv-python'
+        'opencv-python',
+        'ai_tools==0.4.0'
     ],
     python_requires='>=3'
 )

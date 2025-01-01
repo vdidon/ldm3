@@ -245,34 +245,3 @@ class LDM:
         print('roc data is :', xy_arr_key)
         print('error_equl_pos:', error_equl_pos)
         return xy_arr, xy_arr_key, error_equl_pos, auc
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        
-
- 
